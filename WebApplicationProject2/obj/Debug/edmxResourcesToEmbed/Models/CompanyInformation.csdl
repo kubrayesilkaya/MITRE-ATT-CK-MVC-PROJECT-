@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CompanyInformation3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Companies">
+    <Key>
+      <PropertyRef Name="CompanyEmail" />
+    </Key>
+    <Property Name="CompanyIDNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CompanyEstablishmentDate" Type="DateTime" Precision="0" />
+    <Property Name="CompanyCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CompanyCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CompanyPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CompanyType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyEmail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Complaint" Relationship="Self.FK_Complaint_Companies" FromRole="Companies" ToRole="Complaint" />
+  </EntityType>
+  <EntityType Name="Complaint">
+    <Key>
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="Message" />
+    </Key>
+    <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Companies" Relationship="Self.FK_Complaint_Companies" FromRole="Complaint" ToRole="Companies" />
+  </EntityType>
+  <EntityType Name="T1047">
+    <Key>
+      <PropertyRef Name="AttackID" />
+      <PropertyRef Name="AttackResult" />
+      <PropertyRef Name="CompanyName" />
+    </Key>
+    <Property Name="AttackID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AttackResult" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="T1518">
+    <Key>
+      <PropertyRef Name="AttackID" />
+      <PropertyRef Name="AttackResult" />
+      <PropertyRef Name="CompanyName" />
+    </Key>
+    <Property Name="AttackID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AttackResult" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Complaint_Companies">
+    <End Role="Companies" Type="Self.Companies" Multiplicity="1" />
+    <End Role="Complaint" Type="Self.Complaint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyEmail" />
+      </Principal>
+      <Dependent Role="Complaint">
+        <PropertyRef Name="Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CompanyInformation3Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Companies" EntityType="Self.Companies" />
+    <EntitySet Name="Complaint" EntityType="Self.Complaint" />
+    <EntitySet Name="T1047" EntityType="Self.T1047" />
+    <EntitySet Name="T1518" EntityType="Self.T1518" />
+    <AssociationSet Name="FK_Complaint_Companies" Association="Self.FK_Complaint_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Complaint" EntitySet="Complaint" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,18 @@
+﻿@model IEnumerable<WebApplicationProject2.Models.T1518>
+
+@{
+    ViewBag.Title = "TestResultsT1518";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card-deck">
+    @foreach (var i in Model.ToList())
+    {
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@i.CompanyName</h5>
+                <p class="card-text">@i.AttackResult</p>
+            </div>
+        </div>
+    }
+</div>

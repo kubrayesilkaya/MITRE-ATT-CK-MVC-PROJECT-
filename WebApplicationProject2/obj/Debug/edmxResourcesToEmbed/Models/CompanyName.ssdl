@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CompanyInformationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Attacks">
+    <Key>
+      <PropertyRef Name="CompanyIDNumber" />
+    </Key>
+    <Property Name="AttackID" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="CompanyIDNumber" Type="int" Nullable="false" />
+    <Property Name="AttackResult" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Companies">
+    <Key>
+      <PropertyRef Name="CompanyEmail" />
+    </Key>
+    <Property Name="CompanyIDNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CompanyEstablishmentDate" Type="date" Nullable="false" />
+    <Property Name="CompanyCountry" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CompanyCity" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CompanyPhone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CompanyEmail" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="CompanyType" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'CompanyInformation.dbo.Complaint' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Complaint">
+    <Key>
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="Message" />
+      <PropertyRef Name="CompanyIDnumber" />
+    </Key>
+    <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CompanyIDnumber" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Companies_Attacks">
+    <End Role="Attacks" Type="Self.Attacks" Multiplicity="1" />
+    <End Role="Companies" Type="Self.Companies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Attacks">
+        <PropertyRef Name="CompanyIDNumber" />
+      </Principal>
+      <Dependent Role="Companies">
+        <PropertyRef Name="CompanyIDNumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Complaint_Attacks">
+    <End Role="Attacks" Type="Self.Attacks" Multiplicity="1" />
+    <End Role="Complaint" Type="Self.Complaint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Attacks">
+        <PropertyRef Name="CompanyIDNumber" />
+      </Principal>
+      <Dependent Role="Complaint">
+        <PropertyRef Name="CompanyIDnumber" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CompanyInformationModelStoreContainer">
+    <EntitySet Name="Attacks" EntityType="Self.Attacks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Complaint" EntityType="Self.Complaint" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Complaint].[Email] AS [Email], 
+    [Complaint].[Message] AS [Message], 
+    [Complaint].[CompanyIDnumber] AS [CompanyIDnumber]
+    FROM [dbo].[Complaint] AS [Complaint]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Companies_Attacks" Association="Self.FK_Companies_Attacks">
+      <End Role="Attacks" EntitySet="Attacks" />
+      <End Role="Companies" EntitySet="Companies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Complaint_Attacks" Association="Self.FK_Complaint_Attacks">
+      <End Role="Attacks" EntitySet="Attacks" />
+      <End Role="Complaint" EntitySet="Complaint" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

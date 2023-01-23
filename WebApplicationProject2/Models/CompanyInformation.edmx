@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CompanyInformation3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="CompanyEmail" />
+          </Key>
+          <Property Name="CompanyIDNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyEstablishmentDate" Type="date" />
+          <Property Name="CompanyCountry" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyCity" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyPhone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CompanyType" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyEmail" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CompanyInformation3.dbo.Complaint' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Complaint">
+          <Key>
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Message" />
+          </Key>
+          <Property Name="Email" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CompanyInformation3.dbo.T1047' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="T1047">
+          <Key>
+            <PropertyRef Name="AttackID" />
+            <PropertyRef Name="AttackResult" />
+            <PropertyRef Name="CompanyName" />
+          </Key>
+          <Property Name="AttackID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AttackResult" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CompanyInformation3.dbo.T1518' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="T1518">
+          <Key>
+            <PropertyRef Name="AttackID" />
+            <PropertyRef Name="AttackResult" />
+            <PropertyRef Name="CompanyName" />
+          </Key>
+          <Property Name="AttackID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AttackResult" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Complaint_Companies">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="1" />
+          <End Role="Complaint" Type="Self.Complaint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyEmail" />
+            </Principal>
+            <Dependent Role="Complaint">
+              <PropertyRef Name="Email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CompanyInformation3ModelStoreContainer">
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Complaint" EntityType="Self.Complaint" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Complaint].[Email] AS [Email], 
+    [Complaint].[Message] AS [Message]
+    FROM [dbo].[Complaint] AS [Complaint]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="T1047" EntityType="Self.T1047" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [T1047].[AttackID] AS [AttackID], 
+    [T1047].[AttackResult] AS [AttackResult], 
+    [T1047].[CompanyName] AS [CompanyName]
+    FROM [dbo].[T1047] AS [T1047]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="T1518" EntityType="Self.T1518" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [T1518].[AttackID] AS [AttackID], 
+    [T1518].[AttackResult] AS [AttackResult], 
+    [T1518].[CompanyName] AS [CompanyName]
+    FROM [dbo].[T1518] AS [T1518]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Complaint_Companies" Association="Self.FK_Complaint_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Complaint" EntitySet="Complaint" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CompanyInformation3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="CompanyEmail" />
+          </Key>
+          <Property Name="CompanyIDNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyEstablishmentDate" Type="DateTime" Precision="0" />
+          <Property Name="CompanyCountry" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CompanyType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyEmail" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Complaint" Relationship="Self.FK_Complaint_Companies" FromRole="Companies" ToRole="Complaint" />
+        </EntityType>
+        <EntityType Name="Complaint">
+          <Key>
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Message" />
+          </Key>
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Companies" Relationship="Self.FK_Complaint_Companies" FromRole="Complaint" ToRole="Companies" />
+        </EntityType>
+        <EntityType Name="T1047">
+          <Key>
+            <PropertyRef Name="AttackID" />
+            <PropertyRef Name="AttackResult" />
+            <PropertyRef Name="CompanyName" />
+          </Key>
+          <Property Name="AttackID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AttackResult" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T1518">
+          <Key>
+            <PropertyRef Name="AttackID" />
+            <PropertyRef Name="AttackResult" />
+            <PropertyRef Name="CompanyName" />
+          </Key>
+          <Property Name="AttackID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AttackResult" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Complaint_Companies">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="1" />
+          <End Role="Complaint" Type="Self.Complaint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="CompanyEmail" />
+            </Principal>
+            <Dependent Role="Complaint">
+              <PropertyRef Name="Email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CompanyInformation3Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Companies" EntityType="Self.Companies" />
+          <EntitySet Name="Complaint" EntityType="Self.Complaint" />
+          <EntitySet Name="T1047" EntityType="Self.T1047" />
+          <EntitySet Name="T1518" EntityType="Self.T1518" />
+          <AssociationSet Name="FK_Complaint_Companies" Association="Self.FK_Complaint_Companies">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Complaint" EntitySet="Complaint" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CompanyInformation3ModelStoreContainer" CdmEntityContainer="CompanyInformation3Entities">
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="CompanyInformation3Model.Companies">
+              <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="CompanyIDNumber" ColumnName="CompanyIDNumber" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CompanyEstablishmentDate" ColumnName="CompanyEstablishmentDate" />
+                <ScalarProperty Name="CompanyCountry" ColumnName="CompanyCountry" />
+                <ScalarProperty Name="CompanyCity" ColumnName="CompanyCity" />
+                <ScalarProperty Name="CompanyPhone" ColumnName="CompanyPhone" />
+                <ScalarProperty Name="CompanyType" ColumnName="CompanyType" />
+                <ScalarProperty Name="CompanyEmail" ColumnName="CompanyEmail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Complaint">
+            <EntityTypeMapping TypeName="CompanyInformation3Model.Complaint">
+              <MappingFragment StoreEntitySet="Complaint">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T1047">
+            <EntityTypeMapping TypeName="CompanyInformation3Model.T1047">
+              <MappingFragment StoreEntitySet="T1047">
+                <ScalarProperty Name="AttackID" ColumnName="AttackID" />
+                <ScalarProperty Name="AttackResult" ColumnName="AttackResult" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T1518">
+            <EntityTypeMapping TypeName="CompanyInformation3Model.T1518">
+              <MappingFragment StoreEntitySet="T1518">
+                <ScalarProperty Name="AttackID" ColumnName="AttackID" />
+                <ScalarProperty Name="AttackResult" ColumnName="AttackResult" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

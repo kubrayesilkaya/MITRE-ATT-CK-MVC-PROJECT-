@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CompanyInformation3ModelStoreContainer" CdmEntityContainer="CompanyInformation3Entities">
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="CompanyInformation3Model.Companies">
+        <MappingFragment StoreEntitySet="Companies">
+          <ScalarProperty Name="CompanyIDNumber" ColumnName="CompanyIDNumber" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CompanyEstablishmentDate" ColumnName="CompanyEstablishmentDate" />
+          <ScalarProperty Name="CompanyCountry" ColumnName="CompanyCountry" />
+          <ScalarProperty Name="CompanyCity" ColumnName="CompanyCity" />
+          <ScalarProperty Name="CompanyPhone" ColumnName="CompanyPhone" />
+          <ScalarProperty Name="CompanyType" ColumnName="CompanyType" />
+          <ScalarProperty Name="CompanyEmail" ColumnName="CompanyEmail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Complaint">
+      <EntityTypeMapping TypeName="CompanyInformation3Model.Complaint">
+        <MappingFragment StoreEntitySet="Complaint">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T1047">
+      <EntityTypeMapping TypeName="CompanyInformation3Model.T1047">
+        <MappingFragment StoreEntitySet="T1047">
+          <ScalarProperty Name="AttackID" ColumnName="AttackID" />
+          <ScalarProperty Name="AttackResult" ColumnName="AttackResult" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T1518">
+      <EntityTypeMapping TypeName="CompanyInformation3Model.T1518">
+        <MappingFragment StoreEntitySet="T1518">
+          <ScalarProperty Name="AttackID" ColumnName="AttackID" />
+          <ScalarProperty Name="AttackResult" ColumnName="AttackResult" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,88 @@
+﻿@model WebApplicationProject2.Models.Companies
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Modern Business - Start Bootstrap Template</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+
+    <style>
+        .inputItems label {
+            margin-top: -10px;
+            color: grey;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column">
+    <main class="flex-shrink-0">
+        <section class="py-5">
+            <div class="container px-5">
+                <div class="bg-light rounded-3 py-5 px-4 px-md-5 mb-5">
+                    <div class="text-center mb-5">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-envelope"></i></div>
+                        <h1 class="fw-bolder">Update Profile</h1>
+                        <p class="lead fw-normal text-muted mb-0">You can update yor profil settings</p>
+                    </div>
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-8 col-xl-6 inputItems">
+
+                            @using (Html.BeginForm("EditProfile", "Home", FormMethod.Post))
+                            {
+                                <div class="form-floating mb-3">
+                                    @Html.LabelFor(model => model.CompanyName)
+                                    @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control", @id = "name" } })
+                                    @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    @Html.LabelFor(model => model.CompanyEmail)
+                                    @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control", @id = "email" } })
+                                    @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    @Html.LabelFor(model => model.CompanyPhone)
+                                    @Html.EditorFor(model => model.CompanyPhone, new { htmlAttributes = new { @class = "form-control", @id = "phone" } })
+                                    @Html.ValidationMessageFor(model => model.CompanyPhone, "", new { @class = "text-danger" })
+                                </div>
+
+                                <div class="form-floating mb-3">
+                                    @Html.LabelFor(model => model.Password)
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @id = "password" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                                if (WebApplicationProject2.Controllers.HomeController.successMessage != null)
+                                {
+                                    if (WebApplicationProject2.Controllers.HomeController.successMessage == "1")
+                                    {
+                                        <div class="text-center mb-3">
+                                            <div class="alert alert-success">Form submission successful!</div>
+                                            <br />
+                                        </div>
+                                    }
+                                    if (WebApplicationProject2.Controllers.HomeController.successMessage == "0")
+                                    {
+                                        <div class="alert alert-danger">Error sending message!</div>
+                                    }
+                                }
+
+                                <div class="d-grid">
+                                    <input class="btn btn-primary btn-lg" id="submitButton" type="submit" value="Save Changes">
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+</body>
+</html>

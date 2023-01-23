@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "Registration";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Registration</title>
+</head>
+<body>
+    <div>
+        <form action="/Home/Registration" method="post">
+            <br /><br />
+            <table align="center" border="4" cellpadding="20">
+                <tr>
+                    <td>
+                        <h2>Sign Up</h2><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Company Name</label>
+                        <br />
+                        <input type="text" name="CompanyName" data-sb-validations="required" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <br /><br />
+                        <br />
+                    </td>
+
+                    <td>
+                        <label>Password</label>
+                        <br />
+                        <input type="text" name="Password" data-sb-validations="required" />
+                        <br /><br />
+                        <br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Establishment Date</label>
+                        <br />
+                        <input type="date" name="CompanyEstablishmentDate" />
+                        <br /><br />
+                        <br />
+                    </td>
+                    <td>
+                        <label>Company Type</label><br />
+                        <select name="CompanyType">
+                            <option value="" disabled selected>Choose Company Type</option>
+                            <option value="1">Incorporated Company</option>
+                            <option value="2">Limited Company</option>
+                            <option value="3">Unlimited Company</option>
+                            <option value="4">Cooperative Company</option>
+                            <option value="5">Commandite Company</option>
+                        </select>
+                        <br />
+                        <br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Company Country</label>
+                        <br />
+                        <input type="text" name="CompanyCountry" data-sb-validations="required" />
+                        <br /><br />
+                        <br />
+                    </td>
+                    <td>
+                        <label>Company City</label>
+                        <br />
+                        <input type="text" name="CompanyCity" data-sb-validations="required" />
+                        <br /><br />
+                        <br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Company Phone number</label>
+                        <br />
+                        <input type="tel" placeholder="(123) 456-7890" name="CompanyPhone" data-sb-validations="required, CompanyPhone" />
+                        <div class="invalid-feedback" data-sb-feedback="CompanyPhone:required">An phone number is required.</div>
+
+                        <br /><br />
+                        <br />
+                    </td>
+                    <td>
+                        <label>Company Email</label>
+                        <br />
+                        <input type="email" placeholder="name@example.com" name="CompanyEmail" data-sb-validations="required, email" />
+                        <div class="invalid-feedback" data-sb-feedback="CompanyEmail:required">An email is required.</div>
+                        <div class="invalid-feedback" data-sb-feedback="CompanyEmail:email">Email is not valid.</div>
+                        <br /><br />
+                        <br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Save" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
+
+

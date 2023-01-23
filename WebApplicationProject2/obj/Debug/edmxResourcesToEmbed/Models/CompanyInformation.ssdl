@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CompanyInformation3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Companies">
+    <Key>
+      <PropertyRef Name="CompanyEmail" />
+    </Key>
+    <Property Name="CompanyIDNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CompanyEstablishmentDate" Type="date" />
+    <Property Name="CompanyCountry" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CompanyCity" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CompanyPhone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CompanyType" Type="varchar" MaxLength="50" />
+    <Property Name="CompanyEmail" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'CompanyInformation3.dbo.Complaint' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Complaint">
+    <Key>
+      <PropertyRef Name="Email" />
+      <PropertyRef Name="Message" />
+    </Key>
+    <Property Name="Email" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'CompanyInformation3.dbo.T1047' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="T1047">
+    <Key>
+      <PropertyRef Name="AttackID" />
+      <PropertyRef Name="AttackResult" />
+      <PropertyRef Name="CompanyName" />
+    </Key>
+    <Property Name="AttackID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AttackResult" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CompanyName" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'CompanyInformation3.dbo.T1518' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="T1518">
+    <Key>
+      <PropertyRef Name="AttackID" />
+      <PropertyRef Name="AttackResult" />
+      <PropertyRef Name="CompanyName" />
+    </Key>
+    <Property Name="AttackID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AttackResult" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CompanyName" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Complaint_Companies">
+    <End Role="Companies" Type="Self.Companies" Multiplicity="1" />
+    <End Role="Complaint" Type="Self.Complaint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="CompanyEmail" />
+      </Principal>
+      <Dependent Role="Complaint">
+        <PropertyRef Name="Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CompanyInformation3ModelStoreContainer">
+    <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Complaint" EntityType="Self.Complaint" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Complaint].[Email] AS [Email], 
+    [Complaint].[Message] AS [Message]
+    FROM [dbo].[Complaint] AS [Complaint]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="T1047" EntityType="Self.T1047" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [T1047].[AttackID] AS [AttackID], 
+    [T1047].[AttackResult] AS [AttackResult], 
+    [T1047].[CompanyName] AS [CompanyName]
+    FROM [dbo].[T1047] AS [T1047]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="T1518" EntityType="Self.T1518" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [T1518].[AttackID] AS [AttackID], 
+    [T1518].[AttackResult] AS [AttackResult], 
+    [T1518].[CompanyName] AS [CompanyName]
+    FROM [dbo].[T1518] AS [T1518]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Complaint_Companies" Association="Self.FK_Complaint_Companies">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Complaint" EntitySet="Complaint" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
