@@ -1,14 +1,14 @@
 # MITRE ATT&CK MVC PROJECT 
  
- ##This website is an MVC Project designed for Miter Attack cyber security testing. 
+## This website is an MVC Project designed for Miter Attack cyber security testing. 
  
- ###There are 2 controllers in the project, HomeController and TestController. 
+ ### There are 2 controllers in the project, HomeController and TestController. 
  
- ###Boostrap was used while creating the project. 
+ ### Boostrap was used while creating the project. 
  
- ###There are login, sign-up, home, test, test result, about us, home, profile pages on the website. 
+ ### There are login, sign-up, home, test, test result, about us, home, profile pages on the website. 
  
- ###All data is saved in the database and at the same time, the profile information in the database can be updated on the profile page.
+ ### All data is saved in the database and at the same time, the profile information in the database can be updated on the profile page.
  
 ![home](https://user-images.githubusercontent.com/93487264/214073545-c02a8dce-33e6-48dd-9ffb-a4ea0fdf457b.png)
 
