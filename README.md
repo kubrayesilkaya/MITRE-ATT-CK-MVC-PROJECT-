@@ -1,6 +1,6 @@
 # MITRE ATT&CK MVC PROJECT 
  
-## This website is an MVC Project designed for Mitre Attack cyber security testing. 
+## This website is a MVC Project designed for Mitre Attack cyber security tests. 
  
  ### There are 2 controllers in the project, HomeController and TestController. 
  
