@@ -4,7 +4,7 @@
  
  ### There are 2 controllers in the project, HomeController and TestController. 
  
- ### Boostrap was used while creating the project. 
+ ### Bootstrap was used while creating the project. 
  
  ### There are login, sign-up, home, test, test result, about us, home, profile pages on the website. 
  
